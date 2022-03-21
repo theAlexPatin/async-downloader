@@ -1,0 +1,10 @@
+# don't ever lint node_modules
+node_modules
+
+package.json
+package-lock.json
+
+# don't lint build output (make sure it's set to your correct build folder name)
+dist
+
+webpack.config.js
