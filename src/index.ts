@@ -60,8 +60,7 @@ class Downloader {
   }
 
   private formatResult(result: Blob): ReturnType {
-    if (this.returnType === 'uri')
-      return URL.createObjectURL(result)
+    if (this.returnType === 'uri') return URL.createObjectURL(result)
     return result
   }
 
