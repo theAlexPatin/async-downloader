@@ -31,7 +31,7 @@
     "clean": "./node_modules/.bin/rimraf dist workers",
     "build": "yarn clean && webpack",
     "lint": "./node_modules/.bin/eslint --fix .",
-    "pub": "yarn lint && yarn build && npm publish"
+    "pub": "yarn lint && yarn build && yarn publish"
   },
   "dependencies": {},
   "devDependencies": {
