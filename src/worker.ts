@@ -1,41 +1,31 @@
 import download from './download'
 
-export interface WorkerMessage {
-  data: {
-    type: 'progress' | 'result' | 'error'
-    progress?: number
-    result?: Blob
-    message?: string
-  }
-}
+const ctx: Worker = self as any;
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-self.addEventListener('message', async ({ data: url }): Promise<void> => {
+ctx.addEventListener('message', async ({ data: url }): Promise<void> => {
   try {
     const result = await download(url, (progress: number) => {
-      self.postMessage(
+      ctx.postMessage(
         {
           type: 'progress',
           progress,
         },
-        '/'
       )
     })
-    self.postMessage(
+    ctx.postMessage(
       {
         type: 'result',
         result,
       },
-      '/'
     )
   } catch (error) {
     if (!(error instanceof Error)) return
-    self.postMessage(
+    ctx.postMessage(
       {
         type: 'error',
         message: error.message,
       },
-      '/'
     )
   }
 })

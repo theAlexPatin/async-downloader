@@ -1,6 +1,5 @@
 import download from './download'
 import { DownloadProgressCallback } from './types'
-import { WorkerMessage } from './worker'
 
 const PACKAGE_VERSION = '__WEBPACK_VERSION_STUB__'
 const DEFAULT_WORKER_URL = `https://cdn.jsdelivr.net/npm/worker-download@${PACKAGE_VERSION}/workers/download.worker.js`
@@ -11,6 +10,15 @@ type ReturnType = Blob | string
 interface DownloaderOptions {
   returnType?: ReturnTypeOption
   workerUrl?: string
+}
+
+interface WorkerMessage {
+  data: {
+    type: 'progress' | 'result' | 'error'
+    progress?: number
+    result?: Blob
+    message?: string
+  }
 }
 
 class Downloader {

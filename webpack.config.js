@@ -1,7 +1,8 @@
 const path = require('path')
 const pkg = require('./package.json')
 
-const defaultConfig = {
+const getConfig = ({ rules = [], ...config }) => ({
+  ...config,
   mode: 'production',
   module: {
     rules: [
@@ -10,6 +11,23 @@ const defaultConfig = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      ...rules,
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+})
+
+module.exports = [
+  getConfig({
+    entry: './src/index.ts',
+    output: {
+      filename: 'index.js',
+      libraryTarget: 'umd',
+      path: path.resolve(__dirname, 'dist'),
+    },
+    rules: [
       {
         test: /index\.ts$/,
         loader: 'string-replace-loader',
@@ -19,27 +37,18 @@ const defaultConfig = {
         },
       },
     ],
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-}
-
-module.exports = [
-  Object.assign({}, defaultConfig, {
-    entry: './src/index.ts',
-    output: {
-      filename: 'index.js',
-      libraryTarget: 'umd',
-      path: path.resolve(__dirname, 'dist'),
-    },
   }),
-  Object.assign({}, defaultConfig, {
+  getConfig({
     entry: './src/worker.ts',
     output: {
       filename: 'download.worker.js',
-      libraryTarget: 'umd',
       path: path.resolve(__dirname, 'workers'),
     },
+    rules: [
+      {
+        test: /\worker\.js$/,
+        use: { loader: 'worker-loader' },
+      },
+    ],
   }),
 ]
