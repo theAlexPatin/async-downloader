@@ -2,7 +2,7 @@ import download from './download'
 import { DownloadProgressCallback } from './types'
 
 const PACKAGE_VERSION = '__WEBPACK_VERSION_STUB__'
-const DEFAULT_WORKER_URL = `https://cdn.jsdelivr.net/npm/worker-download@${PACKAGE_VERSION}/workers/download.worker.js`
+const DEFAULT_WORKER_URL = `https://cdn.jsdelivr.net/npm/async-downloader@${PACKAGE_VERSION}/workers/download.worker.js`
 
 type ReturnTypeOption = 'blob' | 'uri'
 type ReturnType = Blob | string

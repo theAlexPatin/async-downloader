@@ -1,4 +1,4 @@
-# worker-download [![](https://badge.fury.io/js/worker-download.svg)](https://npmjs.org/package/worker-download) [![](https://www.travis-ci.com/theAlexPatin/worker-download?branch=main)](https://travis-ci.com/theAlexPatin/worker-download)
+# async-downloader [![](https://badge.fury.io/js/async-downloader.svg)](https://npmjs.org/package/async-downloader) [![](https://www.travis-ci.com/theAlexPatin/async-downloader?branch=main)](https://travis-ci.com/theAlexPatin/async-downloader)
 
 A lightweight webworker-based download utility for asynchronously loading content in web applications
 
@@ -7,25 +7,25 @@ A lightweight webworker-based download utility for asynchronously loading conten
 Using npm:
 
 ```bash
-$ npm install worker-download
+$ npm install async-downloader
 ```
 
 Using bower:
 
 ```bash
-$ bower install worker-download
+$ bower install async-downloader
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add worker-download
+$ yarn add async-downloader
 ```
 
 ## Usage
 
 ```javascript
-import Downloader from 'worker-download'
+import Downloader from 'async-downloader'
 
 const downloader = new Downloader()
 
@@ -45,7 +45,7 @@ new Downloader({
 })
 ```
 
-| Option           | Description                                                                | Default                                                                   |
-| ---------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| **`returnType`** | The desired return-type for the file being downloaded (`blob` or `uri`)    | `uri`                                                                     |
-| **`workerUrl`**  | The path to the web worker script (modify if you want to use your own CDN) | `https://cdn.jsdelivr.net/npm/worker-download/workers/download.worker.js` |
+| Option           | Description                                                                | Default                                                                    |
+| ---------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **`returnType`** | The desired return-type for the file being downloaded (`blob` or `uri`)    | `uri`                                                                      |
+| **`workerUrl`**  | The path to the web worker script (modify if you want to use your own CDN) | `https://cdn.jsdelivr.net/npm/async-downloader/workers/download.worker.js` |

@@ -1,5 +1,5 @@
 {
-  "name": "worker-download",
+  "name": "async-downloader",
   "version": "0.0.1",
   "description": "A lightweight, threaded resource download helper leveraging web workers",
   "keywords": [
@@ -12,17 +12,21 @@
     "/dist",
     "/workers"
   ],
+  "engines": {
+    "node": ">=10"
+  },
   "license": "MIT",
   "author": "Alex Patin",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/theAlexPatin/worker-download.git"
+    "url": "git+ssh://git@github.com/theAlexPatin/async-downloader.git"
   },
   "bugs": {
-    "url": "https://github.com/theAlexPatin/worker-download/issues"
+    "url": "https://github.com/theAlexPatin/async-downloader/issues"
   },
-  "homepage": "https://github.com/theAlexPatin/worker-download",
+  "homepage": "https://github.com/theAlexPatin/async-downloader",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "./node_modules/.bin/rimraf dist workers",
     "build": "yarn clean && webpack",
@@ -46,5 +50,8 @@
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
     "worker-loader": "^3.0.8"
+  },
+  "publishConfig": {
+    "@ihomer:registry": "https://gitlab.com/api/v4/projects/15071328/packages/npm/"
   }
 }
