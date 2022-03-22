@@ -4,7 +4,7 @@ export interface WorkerMessage {
   data: {
     type: 'progress' | 'result' | 'error'
     progress?: number
-    blobUri?: string
+    result?: Blob
     message?: string
   }
 }
@@ -12,7 +12,7 @@ export interface WorkerMessage {
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 self.addEventListener('message', async ({ data: url }): Promise<void> => {
   try {
-    const blobUri = await download(url, (progress: number) => {
+    const result = await download(url, (progress: number) => {
       self.postMessage(
         {
           type: 'progress',
@@ -24,7 +24,7 @@ self.addEventListener('message', async ({ data: url }): Promise<void> => {
     self.postMessage(
       {
         type: 'result',
-        blobUri,
+        result,
       },
       '/'
     )

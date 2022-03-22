@@ -1,0 +1,7 @@
+src/
+.eslintrc.js
+.eslintignore
+.editorconfig
+.prettierrc.js
+webpack.config.js
+tsconfig.json

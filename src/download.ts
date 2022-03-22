@@ -5,7 +5,7 @@ const PROGRESS_INTERVAL = 100 // 0.1 seconds
 const download = async (
   resourceUri: string,
   onDownloadProgress: DownloadProgressCallback
-): Promise<string> =>
+): Promise<Blob> =>
   await new Promise((resolve, reject) => {
     let time = new Date().getTime()
 
@@ -24,8 +24,7 @@ const download = async (
     req.onload = () => {
       if (req.readyState !== 4 || req.status !== 200)
         return reject(new Error('Download failed'))
-      const blobUrl = URL.createObjectURL(req.response)
-      return resolve(blobUrl)
+      return resolve(req.response)
     }
 
     req.send()
